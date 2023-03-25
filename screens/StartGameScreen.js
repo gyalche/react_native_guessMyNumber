@@ -1,8 +1,27 @@
-import { View, Text, TextInput, StyleSheet } from 'react-native';
-import React from 'react';
+import { View, Text, TextInput, StyleSheet, Alert } from 'react-native';
+import React, { useState } from 'react';
 import PrimaryButton from '../components/PrimaryButton';
 
-export default function StartGameScreen() {
+export default function StartGameScreen({ onPickNumber }) {
+  const [enteredNumber, setEnteredNumber] = useState('');
+
+  const handleInputHandler = (enteredText) => {
+    setEnteredNumber(enteredText);
+  };
+
+  const resetInputHandler = () => {
+    setEnteredNumber('');
+  };
+  const confirmInputHandler = () => {
+    const chooseNumber = parseInt(enteredNumber);
+    if (isNaN(chooseNumber) || chooseNumber <= 0 || chooseNumber >= 99) {
+      //show alert;
+      Alert.alert('Invalid number', 'Number has to be between 1 and 99', [
+        { text: 'Okey', style: 'destructive', onPress: resetInputHandler },
+      ]);
+    }
+    onPickNumber(chooseNumber);
+  };
   return (
     <View style={styles.inputContainer}>
       <TextInput
@@ -11,10 +30,12 @@ export default function StartGameScreen() {
         keyboardType="number-pad"
         autoCapitalize="none"
         autoCorrect={false}
+        value={enteredNumber}
+        onChangeText={handleInputHandler}
       />
       <View style={styles.buttonsContainer}>
         <PrimaryButton>Reset</PrimaryButton>
-        <PrimaryButton>Confirm</PrimaryButton>
+        <PrimaryButton onPress={confirmInputHandler}>Confirm</PrimaryButton>
       </View>
     </View>
   );

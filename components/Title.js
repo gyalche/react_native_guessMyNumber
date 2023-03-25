@@ -1,24 +1,10 @@
 import { View, Text, StyleSheet } from 'react-native';
 import React from 'react';
-import Title from '../components/Title';
 
-export default function GameScreen() {
-  return (
-    <View style={styles.screen}>
-      <View>
-        <Text>Higher or Lower?</Text>
-        <Title>CHILDREN</Title>
-      </View>
-      <View></View>
-    </View>
-  );
+export default function ({ children }) {
+  return <Text style={styles.title}>{children}</Text>;
 }
-
 const styles = StyleSheet.create({
-  screen: {
-    flex: 1,
-    padding: 12,
-  },
   title: {
     fontSize: 18,
     fontWeight: 'bold',
