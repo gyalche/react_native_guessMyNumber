@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet, Platform } from 'react-native';
 import React from 'react';
 
 export default function ({ children }) {
@@ -11,8 +11,10 @@ const styles = StyleSheet.create({
     color: '#ddb52f',
     textAlign: 'center',
     fontSize: 24,
-    borderWidth: 2,
+    // borderWidth: Platform.OS === 'android' ? 2 : 0,
+    borderWidth: Platform.select({ ios: 0, android: 2 }),
     borderColor: '#ddb52f',
     padding: 12,
+    maxWidth: '80%',
   },
 });

@@ -11,7 +11,7 @@ export default function PrimaryButton({ children, onPress }) {
             : styles.buttonOuterContainer
         }
         onPress={onPress}>
-        <Text style={styles.buttonTexts}>{children}</Text>
+        <Text style={styles.buttonText}>{children}</Text>
       </Pressable>
     </View>
   );
