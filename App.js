@@ -13,7 +13,7 @@ import GameScreen from './screens/GameScreen';
 import GameOverScreen from './screens/GameOverScreen';
 // import { LinearGradient } from 'expo-linear-gradient';
 import { AppLoading } from 'expo-app-loading';
-
+import { StatusBar } from 'expo-status-bar';
 export default function App() {
   const [userNumber, setUserNumber] = useState();
   const [gameIsOver, setGameIsOver] = useState(false);
@@ -58,15 +58,18 @@ export default function App() {
     setGameIsOver(true);
   }
   return (
-    <View style={styles.rootScreen}>
-      <ImageBackground
-        style={styles.rootScreen}
-        source={require('./assets/images/bgimage.png')}
-        resizeMode="cover"
-        imageStyle={styles.backgroundImage}>
-        <SafeAreaView style={styles.rootScreen}>{screen}</SafeAreaView>
-      </ImageBackground>
-    </View>
+    <>
+      <StatusBar style="dark" />
+      <View style={styles.rootScreen}>
+        <ImageBackground
+          style={styles.rootScreen}
+          source={require('./assets/images/bgimage.png')}
+          resizeMode="cover"
+          imageStyle={styles.backgroundImage}>
+          <SafeAreaView style={styles.rootScreen}>{screen}</SafeAreaView>
+        </ImageBackground>
+      </View>
+    </>
   );
 }
 
